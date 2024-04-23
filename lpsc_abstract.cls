@@ -5,6 +5,7 @@
 
 % Copyright (C) 2005,2007,2008 Ross A. Beyer
 % Copyright (C) 2018 Benoit Seignovert
+% Copyright (C) 2024 Aurélien Stcherbinine
 
 % This work is licensed under the Creative Commons
 % Attribution-Noncommercial-Share Alike 4.0 License. To view a copy
@@ -37,15 +38,20 @@
 \RequirePackage[small,compact]{titlesec} % To compress the section titles even more, use the
 \RequirePackage{paralist}			     % For compressing bibliography into a paragraph
 \RequirePackage{balance}			     % For balancing columns on the page.
-\RequirePackage[
-    pdftex,
-    colorlinks=true,
-    urlcolor=blue,
-    citecolor=black,
-    linkcolor=black
-]{hyperref} % Puts actual hyperlinks in your PDF, optional.
+\RequirePackage[pdftex]{hyperref} % Puts actual hyperlinks in your PDF, optional.
+\RequirePackage{xcolor}           % Color handling
 
 \RequirePackage[numbers,sort&compress]{natbib}
+
+%%---------------------------- URL & links ------------------------
+\definecolor{dark_red}{HTML}{993333}
+
+\hypersetup{
+    colorlinks=true,
+    urlcolor=dark_red,
+    citecolor=black,
+    linkcolor=black,
+}
 
 %%---------------------------- Global Settings ------------------------
 
@@ -72,11 +78,30 @@
 \def\@maketitle{%
     {\bfseries\MakeUppercase\@title. }%
     {\AB@authlist, \AB@affillist.}%
+    \hypersetup{
+      pdftitle=\@title,
+      pdfauthor=\AB@authlist,
+      }%
     \vskip .3in
 }
 \renewcommand\maketitle{
     \thispagestyle{empty}
     \twocolumn[\@maketitle]
+}
+
+% Edit maketitle command
+\def\@Maketitle{%
+    {\bfseries\MakeUppercase\@title.\\ }%
+    {\AB@authlist\\ \AB@affillist.}%
+    \hypersetup{
+      pdftitle=\@title,
+      pdfauthor=\AB@authlist,
+      }%
+    \vskip .3in
+}
+\newcommand\Maketitle{
+    \thispagestyle{empty}
+    \twocolumn[\@Maketitle]
 }
 
 % Put the bibliography inline
