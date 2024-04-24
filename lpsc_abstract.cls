@@ -40,6 +40,7 @@
 \RequirePackage{balance}			     % For balancing columns on the page.
 \RequirePackage[pdftex]{hyperref} % Puts actual hyperlinks in your PDF, optional.
 \RequirePackage{xcolor}           % Color handling
+\RequirePackage{caption}          % Customize caption format
 
 \RequirePackage[numbers,sort&compress]{natbib}
 
@@ -64,9 +65,21 @@
 \titleformat{\subparagraph}[runin]{\normalfont\normalsize\itshape}{\thesubparagraph}{1em}{}
 \titlespacing{\subparagraph}{.25in}{2pt}{.5em}
 
-\sisetup{group-separator = {,}}
+\sisetup{
+  group-separator = {,},
+  %detect-weight = true,
+  %detect-shape = true,
+  %detect-family = true,
+  detect-all,
+}
 
-%%---------------------------- Commands ----------------
+%%---------------------------- Captions ---------------------------
+\DeclareCaptionFormat{lpicaption}{%
+  \textit{\textbf{#1} – #3}
+}
+\captionsetup{format=lpicaption}
+
+%%---------------------------- Commands ---------------------------
 %%
 %% We need to create some commands that the LPSC template will use
 
