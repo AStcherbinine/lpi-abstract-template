@@ -60,6 +60,7 @@
 \pagestyle{empty}
 
 \setlength{\columnsep}{.4in}
+\setlength{\belowcaptionskip}{-12pt}
 
 \titlespacing{\paragraph}{.25in}{2pt}{.5em}
 \titleformat{\subparagraph}[runin]{\normalfont\normalsize\itshape}{\thesubparagraph}{1em}{}
